@@ -1,0 +1,1 @@
+docker build -t firstakstestregistry.azurecr.io/catalog-api:v1 .

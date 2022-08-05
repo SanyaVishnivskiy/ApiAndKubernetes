@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: server-api
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: server-api
+  template:
+    metadata:
+      labels:
+        app: server-api
+    spec:
+      containers:
+      - name: server-api
+        image: firstakstestregistry.azurecr.io/catalog-api:v1
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
+        ports:
+        - containerPort: 5200
+        env:
+          - name: ConnectionStrings__Categories
+            valueFrom:
+              secretKeyRef:
+                name: api-secret
+                key: connectionString
+              
