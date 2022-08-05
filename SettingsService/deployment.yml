@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: settings-api
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: settings-api
+  template:
+    metadata:
+      labels:
+        app: settings-api
+    spec:
+      containers:
+      - name: settings-api
+        image: firstakstestregistry.azurecr.io/settings-api:v1
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "250m"
+        ports:
+        - containerPort: 5300
+              
