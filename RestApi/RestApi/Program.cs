@@ -2,6 +2,7 @@ using FluentValidation;
 using MediatR;
 using RestApi;
 using RestApi.Application;
+using RestApi.Application.Configuration;
 using RestApi.Application.Validation;
 using RestApi.Infrastructure;
 using RestApi.Infrastructure.Initializer;
@@ -44,6 +45,8 @@ void ConfigureServices(WebApplicationBuilder builder)
     builder.Services.AddValidatorsFromAssembly(typeof(ValidationBehaviour<,>).Assembly);
 
     builder.Services.AddInfrastructure(builder.Configuration);
+
+    builder.Services.Configure<SettingsServiceOptions>(builder.Configuration.GetSection("SettingsService"));
 }
 
 void ConfigurePipeline(WebApplication app)

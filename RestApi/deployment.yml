@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: server-api
-        image: firstakstestregistry.azurecr.io/catalog-api:v1
+        image: firstakstestregistry.azurecr.io/catalog-api:v2
         resources:
           limits:
             memory: "128Mi"
@@ -27,4 +27,5 @@ spec:
               secretKeyRef:
                 name: api-secret
                 key: connectionString
-              
+          - name: SettingsService__Url
+            value: http://settings-service
